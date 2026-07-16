@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Power
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Power\n");
     return 0;
 }

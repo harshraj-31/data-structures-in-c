@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Floyd Warshall
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Floyd Warshall\n");
     return 0;
 }

@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Middle Element
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Middle Element\n");
     return 0;
 }

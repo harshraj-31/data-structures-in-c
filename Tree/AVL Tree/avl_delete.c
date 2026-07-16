@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Avl Delete
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Avl Delete\n");
     return 0;
 }

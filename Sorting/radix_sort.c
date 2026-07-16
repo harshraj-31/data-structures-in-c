@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Radix Sort
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Radix Sort\n");
     return 0;
 }

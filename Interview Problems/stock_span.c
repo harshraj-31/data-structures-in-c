@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Stock Span
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Stock Span\n");
     return 0;
 }

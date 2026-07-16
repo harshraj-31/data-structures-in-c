@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Heapify
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Heapify\n");
     return 0;
 }

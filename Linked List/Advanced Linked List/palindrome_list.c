@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Palindrome List
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Palindrome List\n");
     return 0;
 }

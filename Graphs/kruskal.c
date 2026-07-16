@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Kruskal
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Kruskal\n");
     return 0;
 }

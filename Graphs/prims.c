@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Prims
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Prims\n");
     return 0;
 }

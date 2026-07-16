@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Rat In Maze
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Rat In Maze\n");
     return 0;
 }

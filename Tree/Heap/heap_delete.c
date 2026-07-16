@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Heap Delete
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Heap Delete\n");
     return 0;
 }

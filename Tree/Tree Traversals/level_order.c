@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Level Order
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Level Order\n");
     return 0;
 }

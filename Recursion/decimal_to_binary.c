@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Decimal To Binary
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Decimal To Binary\n");
     return 0;
 }

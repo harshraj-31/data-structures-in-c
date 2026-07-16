@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Double Hashing
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Double Hashing\n");
     return 0;
 }

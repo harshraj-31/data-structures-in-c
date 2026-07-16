@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Lru Cache Simulation
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Lru Cache Simulation\n");
     return 0;
 }

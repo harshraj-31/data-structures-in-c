@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Sum Of Digits
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Sum Of Digits\n");
     return 0;
 }

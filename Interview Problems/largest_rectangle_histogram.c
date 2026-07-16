@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Largest Rectangle Histogram
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Largest Rectangle Histogram\n");
     return 0;
 }

@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Heap Insert
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Heap Insert\n");
     return 0;
 }

@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Celebrity Problem
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Celebrity Problem\n");
     return 0;
 }

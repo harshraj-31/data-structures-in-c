@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Dijkstra
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Dijkstra\n");
     return 0;
 }

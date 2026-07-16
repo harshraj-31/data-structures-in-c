@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Balanced Parentheses
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Balanced Parentheses\n");
     return 0;
 }

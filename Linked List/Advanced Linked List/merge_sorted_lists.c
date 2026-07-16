@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Merge Sorted Lists
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Merge Sorted Lists\n");
     return 0;
 }

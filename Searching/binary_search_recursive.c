@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Binary Search Recursive
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Binary Search Recursive\n");
     return 0;
 }

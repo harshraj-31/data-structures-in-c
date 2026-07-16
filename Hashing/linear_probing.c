@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Linear Probing
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Linear Probing\n");
     return 0;
 }

@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Rr Rotation
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Rr Rotation\n");
     return 0;
 }

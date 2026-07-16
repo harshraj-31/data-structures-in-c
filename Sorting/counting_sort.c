@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Counting Sort
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Counting Sort\n");
     return 0;
 }

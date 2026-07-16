@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Interpolation Search
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Interpolation Search\n");
     return 0;
 }

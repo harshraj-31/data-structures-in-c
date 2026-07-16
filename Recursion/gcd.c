@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Gcd
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Gcd\n");
     return 0;
 }

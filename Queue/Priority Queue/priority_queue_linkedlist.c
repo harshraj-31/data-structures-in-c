@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Priority Queue Linkedlist
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Priority Queue Linkedlist\n");
     return 0;
 }

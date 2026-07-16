@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Nth Node From End
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Nth Node From End\n");
     return 0;
 }

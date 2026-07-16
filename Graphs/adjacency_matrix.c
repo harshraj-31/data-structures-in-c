@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Adjacency Matrix
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Adjacency Matrix\n");
     return 0;
 }

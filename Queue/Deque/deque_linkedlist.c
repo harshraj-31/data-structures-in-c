@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Deque Linkedlist
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Deque Linkedlist\n");
     return 0;
 }

@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Bucket Sort
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Bucket Sort\n");
     return 0;
 }

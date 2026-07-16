@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Quadratic Probing
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Quadratic Probing\n");
     return 0;
 }

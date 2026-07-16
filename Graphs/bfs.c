@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Bfs
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Bfs\n");
     return 0;
 }

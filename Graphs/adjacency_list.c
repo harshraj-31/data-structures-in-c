@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Adjacency List
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Adjacency List\n");
     return 0;
 }

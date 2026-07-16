@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Hash Table
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Hash Table\n");
     return 0;
 }

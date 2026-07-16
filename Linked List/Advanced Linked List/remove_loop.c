@@ -1,5 +1,5 @@
 /*
- * Next Greater Element
+ * Remove Loop
  * Starter template
  */
 
@@ -7,6 +7,6 @@
 
 int main()
 {
-    printf("Next Greater Element\n");
+    printf("Remove Loop\n");
     return 0;
 }
