@@ -1,18 +1,21 @@
-#include<stdio.h>
-#include<conio.h>
+#include <stdio.h>
+#include <conio.h>
+
 int main()
 {
     float avg;
-    int a[5]={1,2,3,4,5}, i;
-    int sum=0;
+    int a[5] = {1,2,3,4,5}, i;
+    int sum = 0;
 
     clrscr();
 
-    for(i=0;i<5;i++)
+    // Add all array elements
+    for(i = 0; i < 5; i++)
     {
         sum = sum + a[i];
     }
 
+    // Calculate average
     avg = sum / 5.0;
 
     printf("sum is %d\n", sum);
