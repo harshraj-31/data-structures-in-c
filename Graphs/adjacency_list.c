@@ -1,48 +1,39 @@
-// WAP to reverse an array and store it in another array
+/*
+ * Adjacency List
+ */
 
 #include <stdio.h>
-#include <conio.h>
 
 int main()
 {
-    int arr[10];
-    int rev[10];
-    int i, n;
-
-    clrscr();
-
-    printf("\n\tEnter the array size: ");
-    scanf("%d", &n);
-
-    // Take array elements
-    for(i = 0; i < n; i++)
+    // Each row stores the vertices connected to that vertex
+    int graph[4][3] =
     {
-        printf("\n\tEnter the array %d: ", i);
-        scanf("%d", &arr[i]);
+        {1, 2, -1},
+        {0, 2, 3},
+        {0, 1, 3},
+        {1, 2, -1}
+    };
+
+    int i, j;
+
+    printf("Adjacency List:\n");
+
+    // Display connected vertices
+    for(i = 0; i < 4; i++)
+    {
+        printf("%d -> ", i);
+
+        for(j = 0; j < 3; j++)
+        {
+            if(graph[i][j] != -1)
+            {
+                printf("%d ", graph[i][j]);
+            }
+        }
+
+        printf("\n");
     }
 
-    // Store elements in reverse order
-    for(i = 0; i < n; i++)
-    {
-        rev[i] = arr[n - i - 1];
-    }
-
-    // Display original array
-    printf("\n\tArray before reverse: ");
-
-    for(i = 0; i < n; i++)
-    {
-        printf(" %d", arr[i]);
-    }
-
-    // Display reversed array
-    printf("\n\tArray after reverse: ");
-
-    for(i = 0; i < n; i++)
-    {
-        printf(" %d", rev[i]);
-    }
-
-    getch();
     return 0;
 }
