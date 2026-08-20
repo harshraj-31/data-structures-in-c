@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Basic node structure
 struct node
 {
     int data;
-    struct node *next; // next stores address of next node
+    struct node *next; // Stores address of the next node
 };
 
-// a node looks like : [data|next]
-
-// Start always points to the first node
-struct node *start = NULL; //  this is a global variable not structure member
+// Start pointers for the lists
+struct node *start = NULL;
 struct node *start2;
 struct node *start3;
 
+// Function declarations
 void create();
 void display();
 void insatstart();
@@ -29,9 +29,12 @@ void sort();
 void copy_ll();
 void dis_copy();
 void merge();
+
 int main()
 {
     int ch;
+
+    // Keep showing the menu until user exits
     do
     {
         printf("\n1.CREATE");
@@ -50,8 +53,10 @@ int main()
         printf("\n14. Display copied List");
         printf("\n15. Merge List");
         printf("\n0.Exit");
+
         printf("\nEnter your choice: ");
         scanf("%d", &ch);
+
         switch (ch)
         {
         case 1:
@@ -105,7 +110,7 @@ int main()
         case 13:
             copy_ll();
             break;
-        
+
         case 14:
             dis_copy();
             break;
@@ -121,13 +126,15 @@ int main()
         default:
             printf("Invalid chocice, try again");
         }
+
     } while (ch != 0);
 }
 
+// Create a new node at the end
 void create()
 {
-    // new node and ptr to traverse till end
     struct node *newnode, *ptr;
+
     newnode = (struct node *)malloc(sizeof(struct node));
 
     printf("\n\tEnter the value for new node: ");
@@ -137,19 +144,23 @@ void create()
 
     if (start == NULL)
     {
-        start = newnode; // if list is empty then we point start to our newnode address; start -> newnode
+        start = newnode;
     }
     else
     {
-        ptr = start;              // for traversal
-        while (ptr->next != NULL) // [10|*]->[20|*]->[30|NULL] after null break because we have to add newnode at last;
+        ptr = start;
+
+        // Move to the last node
+        while (ptr->next != NULL)
         {
-            ptr = ptr->next; // traver till null
+            ptr = ptr->next;
         }
+
         ptr->next = newnode;
     }
 }
 
+// Display all nodes
 void display()
 {
     struct node *ptr;
@@ -162,38 +173,51 @@ void display()
     else
     {
         ptr = start;
+
         printf("\nLinked List: \n");
+
         while (ptr != NULL)
         {
             printf("%d ->", ptr->data);
             ptr = ptr->next;
         }
+
         printf("NULL");
     }
 }
 
+// Insert a node at the beginning
 void insatstart()
 {
     struct node *newnode;
+
     newnode = (struct node *)malloc(sizeof(struct node));
+
     printf("\nEnter the node value: ");
     scanf("%d", &newnode->data);
+
     if(start == NULL)
     {
         newnode->next = NULL;
         start = newnode;
     }
+
     newnode->next = start;
     start = newnode;
+
     printf("\nNode Inserted at start");
 }
 
+// Insert a node at the end
 void insatlast()
 {
     struct node *newnode, *ptr;
+
     newnode = (struct node *)malloc(sizeof(struct node));
+
     printf("\nEnter the node value: ");
     scanf("%d", &newnode->data);
+
     newnode->next = NULL;
 
     if(start == NULL)
@@ -201,39 +225,53 @@ void insatlast()
         start = newnode;
         return;
     }
+
     ptr = start;
+
+    // Move to the last node
     while (ptr->next != NULL)
     {
         ptr = ptr->next;
     }
+
     ptr->next = newnode;
+
     printf("\nNode Inserted at Last");
 }
 
+// Insert a node after a given value
 void insafternode()
 {
     int srchno;
     struct node *newnode, *ptr;
+
     if(start == NULL)
     {
         printf("\nList is empty");
         return;
     }
+
     printf("\nEnter the value after which you want to add the node: ");
     scanf("%d", &srchno);
+
     ptr = start;
 
+    // Search for the given value
     while (ptr != NULL && ptr->data != srchno)
     {
         ptr = ptr->next;
     }
+
     if (ptr != NULL)
     {
         newnode = (struct node *)malloc(sizeof(struct node));
+
         printf("\nEnter the node value to insert: ");
         scanf("%d", &newnode->data);
+
         newnode->next = ptr->next;
         ptr->next = newnode;
+
         printf("\nNode Inserted after %d", srchno);
     }
     else
@@ -241,9 +279,12 @@ void insafternode()
         printf("\n%d not Found in the list", srchno);
     }
 }
+
+// Delete the first node
 void delsatstart()
 {
     struct node *ptr;
+
     if (start == NULL)
     {
         printf("\nList is Empty");
@@ -253,10 +294,12 @@ void delsatstart()
     {
         ptr = start;
         start = start->next;
+
         free(ptr);
     }
 }
 
+// Delete the last node
 void delatlast()
 {
     struct node *ptr, *p;
@@ -266,23 +309,30 @@ void delatlast()
         printf("\nList is Empty");
         return;
     }
+
+    // If there is only one node
     if (start->next == NULL)
-    { 
+    {
         free(start);
         start = NULL;
         return;
     }
+
     p = start;
+
+    // Move to the second last node
     while (p->next->next != NULL)
     {
         p = p->next;
     }
+
     ptr = p->next;
     p->next = NULL;
+
     free(ptr);
-    //[10|*] -> [20|*]  -> [30|*]  -> [40|NULL]
 }
 
+// Delete a node by its value
 void deleteNode()
 {
     int srchno;
@@ -297,19 +347,21 @@ void deleteNode()
     printf("\nEnter value to delete: ");
     scanf("%d", &srchno);
 
-    // Case 1: delete first node
+    // Check if the first node needs to be deleted
     if (start->data == srchno)
     {
         temp = start;
         start = start->next;
+
         free(temp);
+
         printf("\nNode deleted");
         return;
     }
 
-    // Case 2: delete middle or last node
     ptr = start;
-    //[10|*] -> [20|*]  -> [30|*]  -> [40|NULL]
+
+    // Find the node before the one we want to delete
     while (ptr->next != NULL && ptr->next->data != srchno)
     {
         ptr = ptr->next;
@@ -321,47 +373,59 @@ void deleteNode()
         return;
     }
 
-    temp = ptr->next;       // node to be deleted
-    ptr->next = temp->next; // bypass node
-    free(temp);             // free memory
+    temp = ptr->next;
+    ptr->next = temp->next;
+
+    free(temp);
 
     printf("\nNode deleted");
 }
 
+// Count the total number of nodes
 void count()
 {
     int count=0;
     struct node *p;
+
     if (start == NULL)
     {
         printf("\nList is Empty");
         return;
     }
+
     p = start;
+
     while (p != NULL)
     {
         count += 1;
         p = p->next;
     }
+
     printf("\nTotal nodes are: %d",count);
 }
 
+// Search for a value in the list
 void search()
 {
     int key;
     struct node *p;
+
     if (start == NULL)
     {
         printf("\nList is Empty");
         return;
     }
+
     printf("\nEnter value to search: ");
     scanf("%d", &key);
+
     p = start;
+
     while (p != NULL && p->data != key)
     {
         p = p->next;
     }
+
     if (p != NULL)
     {
         printf("%d: Number found", key);
@@ -372,10 +436,13 @@ void search()
     }
 }
 
+// Reverse the linked list
 void reverse()
 {
     struct node *curr, *next = NULL, *prev = NULL;
+
     curr = start;
+
     while (curr != NULL)
     {
         next = curr->next;
@@ -383,17 +450,22 @@ void reverse()
         prev = curr;
         curr = next;
     }
+
     start = prev;
 }
+
+// Sort the list
 void sort()
 {
     struct node *i, *j;
     int temp;
+
     for (i = start; i != NULL; i = i->next)
     {
         for (j = start; j != NULL; j = j->next)
         {
-            if (i->data > j->data)      // THIS IS DESCENDING SORT because of  " > " operator use " < " for  ascsnding sort
+            // Change > to < for ascending order
+            if (i->data > j->data)
             {
                 temp = i->data;
                 i->data = j->data;
@@ -403,60 +475,65 @@ void sort()
     }
 }
 
+// Make a copy of the linked list
 void copy_ll()
 {
-    
+    struct node *ptr,*newnode,*ptr2;
 
-	struct node *ptr,*newnode,*ptr2;
-	start2=NULL;
+    start2=NULL;
+    ptr=start;
 
-	ptr=start;
-	while(ptr!=NULL)
-	{
-		newnode=(struct node *)malloc(sizeof(struct node));
-		newnode->data=ptr->data;
-		newnode->next=NULL;
-     //        START1  
-    //  ptr = [10]-> [20]-> [30] -> [40] -> [50] NULL
+    while(ptr!=NULL)
+    {
+        newnode=(struct node *)malloc(sizeof(struct node));
 
-    //        START2 
-    // ptr2 = [10]-> [20]-> [30]-> [40]-> NULL
-		if(start2==NULL)
-		{
-			start2=newnode;
-			ptr2=start2;
-		}
-		else
-		{
-			ptr2->next=newnode;
-			ptr2=newnode;
-		}
-		ptr=ptr->next;
-	}
+        newnode->data=ptr->data;
+        newnode->next=NULL;
 
+        // Add the new node to the copied list
+        if(start2==NULL)
+        {
+            start2=newnode;
+            ptr2=start2;
+        }
+        else
+        {
+            ptr2->next=newnode;
+            ptr2=newnode;
+        }
+
+        ptr=ptr->next;
+    }
 }
+
+// Display the copied list
 void dis_copy()
 {
-	struct node *ptr;
-	ptr=start2;
-	while(ptr!=NULL)
-	{
-		printf("%d \t",ptr->data);
-		ptr=ptr->next;
-	}
+    struct node *ptr;
+
+    ptr=start2;
+
+    while(ptr!=NULL)
+    {
+        printf("%d \t",ptr->data);
+        ptr=ptr->next;
+    }
 }
 
+// Merge the original list and copied list
 void merge()
 {
     struct node *ptr, *newnode, *temp;
 
     start3 = NULL;
 
-    // Copy first list
+    // Copy the first list
     ptr = start;
+
     while(ptr != NULL)
     {
         newnode = (struct node*)malloc(sizeof(struct node));
+
         newnode->data = ptr->data;
         newnode->next = NULL;
 
@@ -474,11 +551,13 @@ void merge()
         ptr = ptr->next;
     }
 
-    // Copy second list
+    // Add the copied list after the first list
     ptr = start2;
+
     while(ptr != NULL)
     {
         newnode = (struct node*)malloc(sizeof(struct node));
+
         newnode->data = ptr->data;
         newnode->next = NULL;
 
@@ -488,8 +567,9 @@ void merge()
         ptr = ptr->next;
     }
 
-    // Display merged list
+    // Display the final merged list
     printf("\nMerged List:\n");
+
     temp = start3;
 
     while(temp != NULL)
