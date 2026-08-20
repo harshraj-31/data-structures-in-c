@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Node structure */
+/* Basic node for the linked list */
 struct node {
     int data;
     struct node *next;
 };
 
-/* Global pointers */
+/* Pointers for both lists and their results */
 struct node *list1 = NULL;
 struct node *list2 = NULL;
 struct node *startList1 = NULL;
@@ -15,7 +15,7 @@ struct node *startList2 = NULL;
 struct node *unionList = NULL;
 struct node *intersection = NULL;
 
-/* Create List 1 */
+/* Add a value to List 1 */
 void createL1(int value) {
     struct node *newNode, *ptr;
 
@@ -28,13 +28,16 @@ void createL1(int value) {
         startList1 = list1;
     } else {
         ptr = list1;
+
+        /* Go to the last node */
         while (ptr->next != NULL)
             ptr = ptr->next;
+
         ptr->next = newNode;
     }
 }
 
-/* Create List 2 */
+/* Add a value to List 2 */
 void createL2(int value) {
     struct node *newNode, *ptr;
 
@@ -47,40 +50,48 @@ void createL2(int value) {
         startList2 = list2;
     } else {
         ptr = list2;
+
+        /* Go to the last node */
         while (ptr->next != NULL)
             ptr = ptr->next;
+
         ptr->next = newNode;
     }
 }
 
-/* Check if value exists */
+/* Check whether a value is already in the list */
 int exists(struct node *ptr, int value) {
     while (ptr != NULL) {
         if (ptr->data == value)
             return 1;
+
         ptr = ptr->next;
     }
+
     return 0;
 }
 
-/* Find Union */
+/* Create the union of both lists */
 void findUnion() {
     struct node *ptr, *newNode;
 
     unionList = NULL;
 
-    /* Copy list1 */
+    /* First add all values from List 1 */
     ptr = startList1;
+
     while (ptr != NULL) {
         newNode = (struct node *)malloc(sizeof(struct node));
         newNode->data = ptr->data;
         newNode->next = unionList;
         unionList = newNode;
+
         ptr = ptr->next;
     }
 
-    /* Add unique elements from list2 */
+    /* Add only new values from List 2 */
     ptr = startList2;
+
     while (ptr != NULL) {
         if (!exists(unionList, ptr->data)) {
             newNode = (struct node *)malloc(sizeof(struct node));
@@ -88,18 +99,21 @@ void findUnion() {
             newNode->next = unionList;
             unionList = newNode;
         }
+
         ptr = ptr->next;
     }
 }
 
-/* Find Intersection */
+/* Create the intersection of both lists */
 void findIntersection() {
     struct node *ptr, *newNode;
 
     intersection = NULL;
 
     ptr = startList1;
+
     while (ptr != NULL) {
+        /* Add the value if it exists in both lists */
         if (exists(startList2, ptr->data) &&
             !exists(intersection, ptr->data)) {
 
@@ -108,11 +122,12 @@ void findIntersection() {
             newNode->next = intersection;
             intersection = newNode;
         }
+
         ptr = ptr->next;
     }
 }
 
-/* Display list */
+/* Display the linked list */
 void display(struct node *ptr) {
     if (ptr == NULL) {
         printf("List is empty\n");
@@ -123,10 +138,11 @@ void display(struct node *ptr) {
         printf("%d -> ", ptr->data);
         ptr = ptr->next;
     }
+
     printf("NULL\n");
 }
 
-/* Main with menu */
+/* Main menu */
 int main() {
     int choice, value;
 
@@ -141,6 +157,7 @@ int main() {
         printf("7. Display Union\n");
         printf("8. Display Intersection\n");
         printf("9. Exit\n");
+
         printf("Enter choice: ");
         scanf("%d", &choice);
 
