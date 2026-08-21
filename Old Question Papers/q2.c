@@ -1,10 +1,15 @@
-//menu driven stack programs
+// Menu driven stack program
+
 #include<stdio.h>
 #include<stdlib.h>
+
 #define MAX 100
+
+// Stack array and top pointer
 int stack[MAX];
 int top = -1;
 
+// Add an element to the stack
 void push(int value)
 {
     if(top == MAX - 1)
@@ -18,6 +23,7 @@ void push(int value)
     }
 }
 
+// Remove the top element
 void pop()
 {
     if(top == -1)
@@ -30,9 +36,10 @@ void pop()
     }
 }
 
+// Show the top element
 void peep()
 {
-    if (top == -1)
+    if(top == -1)
     {
         printf("\nStack is empty");
     }
@@ -42,26 +49,31 @@ void peep()
     }
 }
 
-
+// Display all stack elements
 void display()
 {
     int i;
-    if (top == -1)
+
+    if(top == -1)
     {
         printf("\nStack is empty");
     }
     else
     {
+        // Start from top and move towards bottom
         for(i=top;i>=0;i--)
         {
             printf("%d\n",stack[i]);
         }
     }
 }
+
 int main()
 {
     int value, ch = -1;
-    while (ch != 0)
+
+    // Keep showing the menu until exit
+    while(ch != 0)
     {
         printf("\nSTACK MENU");
         printf("\n1.Push");
@@ -69,16 +81,18 @@ int main()
         printf("\n3.Peep");
         printf("\n4.Display");
         printf("\n0.Exit");
+
         printf("\nEnter your choice: ");
         scanf("%d",&ch);
-        switch (ch)
+
+        switch(ch)
         {
         case 1:
             printf("\nEnter the value: ");
             scanf("%d",&value);
             push(value);
             break;
-        
+
         case 2:
             pop();
             break;
@@ -90,15 +104,16 @@ int main()
         case 4:
             display();
             break;
-        
+
         case 0:
+            printf("\nExiting..");
             exit(0);
-            printf("Exiting..");
 
         default:
             printf("\nInvalid choice, try again!");
             break;
         }
     }
-    
+
+    return 0;
 }
