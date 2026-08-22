@@ -3,6 +3,7 @@
 
 #define MAX 5
 
+// Stack array and top position
 int stack[MAX];
 int top = -1;
 
@@ -19,6 +20,7 @@ int main()
 {
     int ch;
 
+    // Keep displaying the menu until the user exits
     while(1)
     {
         ch = menu();
@@ -28,24 +30,31 @@ int main()
             case 1:
                 push();
                 break;
+
             case 2:
                 pop();
                 break;
+
             case 3:
                 peep();
                 break;
+
             case 4:
                 count();
                 break;
+
             case 5:
                 display();
                 break;
+
             case 6:
                 reverse();
                 break;
+
             case 7:
                 printf("Exiting program...\n");
                 exit(0);
+
             default:
                 printf("\nINVALID CHOICE\n");
         }
@@ -54,10 +63,11 @@ int main()
     return 0;
 }
 
-// MENU FUNCTION
+// Menu function
 int menu()
 {
     int choice;
+
     printf("\n\n\tSTACK PROGRAM MENU\n");
     printf("1. PUSH\n");
     printf("2. POP\n");
@@ -73,11 +83,12 @@ int menu()
     return choice;
 }
 
-// PUSH FUNCTION
+// Add an element to the stack
 void push()
 {
     int val;
 
+    // Check if the stack is full
     if(top == MAX - 1)
     {
         printf("\nSTACK IS FULL (Overflow)\n");
@@ -86,15 +97,18 @@ void push()
     {
         printf("ENTER VALUE TO PUSH: ");
         scanf("%d", &val);
+
         top++;
         stack[top] = val;
+
         printf("DATA PUSHED SUCCESSFULLY\n");
     }
 }
 
-// POP FUNCTION
+// Remove the top element from the stack
 void pop()
 {
+    // Check if the stack is empty
     if(top == -1)
     {
         printf("\nSTACK IS EMPTY (Underflow)\n");
@@ -106,7 +120,7 @@ void pop()
     }
 }
 
-// PEEP FUNCTION
+// Display the top element without removing it
 void peep()
 {
     if(top == -1)
@@ -119,13 +133,13 @@ void peep()
     }
 }
 
-// COUNT FUNCTION
+// Count the number of elements
 void count()
 {
     printf("Number of elements in stack: %d\n", top + 1);
 }
 
-// DISPLAY FUNCTION
+// Display all stack elements
 void display()
 {
     int i;
@@ -137,6 +151,8 @@ void display()
     else
     {
         printf("Stack elements are:\n");
+
+        // Display from top to bottom
         for(i = top; i >= 0; i--)
         {
             printf("%d\n", stack[i]);
@@ -144,7 +160,7 @@ void display()
     }
 }
 
-// REVERSE FUNCTION
+// Reverse the stack
 void reverse()
 {
     int i, temp;
@@ -155,7 +171,8 @@ void reverse()
         return;
     }
 
-    for(i = 0; i <= top/2; i++)
+    // Swap elements from both ends
+    for(i = 0; i <= top / 2; i++)
     {
         temp = stack[i];
         stack[i] = stack[top - i];
@@ -164,7 +181,9 @@ void reverse()
 
     printf("\nSTACK REVERSED SUCCESSFULLY\n");
 
+    // Display the reversed stack
     printf("Reversed Stack:\n");
+
     for(i = top; i >= 0; i--)
     {
         printf("%d\n", stack[i]);
