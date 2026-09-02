@@ -1,337 +1,644 @@
-//CIRCULAR QUEUE
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <math.h>
 
-// #include<stdio.h>
-// #include<stdlib.h>
-// #define MAX 5
-// int no[MAX];
-// int cnt;
-// int front = -1,rear = -1;
-
-// void peek()
-// {
-//     if(front == -1)
-//     {
-//         printf("Queue is empty");
-//         return;
-//     }
-//     else
-//     {
-//         printf("%d",no[front]);
-//     }
+#define MAX 5
 
 
+/* =========================================================
+                    NORMAL QUEUE
+   ========================================================= */
 
-//NORMAL 
-// void enqueue
-// {
-//     int val;
-//     if(rear == MAX -1)
-//     {
-//         printf("OVERFlow");    
-//         return;
-//     }
-//     if(front == -1 && rear == -1)
-//     {
-//         front = rear = 0;
-//     }
-//     else
-//     {
-//         rear = rear + 1;
-//     }
-//     no[rear] = val;
-// }
+int queue[MAX];
+int front = -1, rear = -1;
 
+void normalEnqueue()
+{
+    int val;
 
-//DEQUEUE [ NORMAL]
+    if(rear == MAX - 1)
+    {
+        printf("\nQueue Overflow");
+        return;
+    }
 
-// void dequeue
-// {
-//     int val;
-//     if(front == -1 || front > rear) 
-//     printf("Underflow, nothing to delete");
-//     return;
+    printf("\nEnter value: ");
+    scanf("%d", &val);
 
-//     else
-//     {
-//         front = front + 1;
-//         printf("Dequeue : %d",no[front]);
-//         if(front > rear)
-//         {
-//             front = rear = -1;
-//         }
-//     }
-// }
+    if(front == -1)
+        front = rear = 0;
+    else
+        rear++;
 
-//DISPLAY
+    queue[rear] = val;
+}
 
-// void display()
-// {
-//     int i;
-//     if(front == -1 || front > rear) //same as dequeue
-//     {
-//         printf("Queue is empty");
-//         return;
-//     }
-//     else
-//     {
-//         for(i=front;i<=rear;i++)
-//         {
-//             printf("\n%d",no[i]);
-//         }
-        
-//     }
-// }
+void normalDequeue()
+{
+    int val;
 
+    if(front == -1 || front > rear)
+    {
+        printf("\nQueue Underflow");
+        return;
+    }
 
-//                               CIRCULAR
+    val = queue[front];
+    front++;
 
-// void enqueue
-// {
-//     if( (front==0 && rear == MAX -1) || (front == rear + 1) )    //P/F (OVERFLOW) return
-    
-//     if(front == -1 && rear == -1)
-//     {
-//         front = rear = 0;
-//     }
-//     else if(rear == MAX -1 && front!=0)
-//     {
-//         rear = 0;
-//     }
-//     else
-//     {
-//         rear = rear +1;  // no[rear]=val 
-//     }
-//}
+    printf("\nDeleted: %d", val);
+
+    if(front > rear)
+        front = rear = -1;
+}
+
+void normalPeek()
+{
+    if(front == -1)
+    {
+        printf("\nQueue is empty");
+        return;
+    }
+
+    printf("\nFront element: %d", queue[front]);
+}
+
+void normalDisplay()
+{
+    int i;
+
+    if(front == -1)
+    {
+        printf("\nQueue is empty");
+        return;
+    }
+
+    printf("\nQueue: ");
+
+    for(i = front; i <= rear; i++)
+        printf("%d ", queue[i]);
+}
 
 
-//CIRCULAR
+/* =========================================================
+                    CIRCULAR QUEUE
+   ========================================================= */
 
-// void dequeue()
-// {
-//     int val;
-//     if(front == -1) // UNDERFLOW
-//     if(front == rear) // front = rear = -1;
-//     else if (front == MAX -1); // front = 0;
-//     //PF(DEqueue %d, no[front])
-//     else front++;  
-// }
+int cqueue[MAX];
+int cfront = -1, crear = -1;
 
+void circularEnqueue()
+{
+    int val;
 
+    // Queue is full when rear is just before front.
+    if((cfront == 0 && crear == MAX - 1) ||
+       (cfront == crear + 1))
+    {
+        printf("\nCircular Queue Overflow");
+        return;
+    }
 
-// }
-// void display()
-// {
-//     int i;
-//     if (front == -1)
-//     {
-//         printf("Underflow");
-//         return;
-//     }
-//     if(front <= rear)
-//     {
-//         for(i=front;i<=rear;i++)
-//         {
-//             printf("%d ",no[i]);
-//         }
-//     }
-//     else
-//     {
-//          for(i=front;i < MAX;i++)
-//         {
-//             printf("%d ",no[i]);
-//         }
-//         for(i=0;i<=rear;i++)
-//         {
-//             printf("%d ",no[i]);
-//         }
-//     }
-// }
-// CIRCULAR LINKED LIST:
-// #include<stdio.h>
-// #include<stdlib.h>
+    printf("\nEnter value: ");
+    scanf("%d", &val);
 
-// struct node
-// {
-//     int data;
-//     struct node *next;
-// };
+    if(cfront == -1)
+    {
+        cfront = crear = 0;
+    }
+    else if(crear == MAX - 1)
+    {
+        crear = 0;
+    }
+    else
+    {
+        crear++;
+    }
 
-// struct node *start = NULL;
+    cqueue[crear] = val;
+}
 
-// void create()
-// {
-//     struct node *newnode,*ptr;
+void circularDequeue()
+{
+    int val;
 
-//     newnode = (struct node*)malloc(sizeof(struct node));
-//     printf("Enter value: ");
-//     scanf("%d",&newnode->data);
+    if(cfront == -1)
+    {
+        printf("\nCircular Queue Underflow");
+        return;
+    }
 
-//     if(start == NULL)
-//     {
-//         start = newnode;
-//         newnode->next = start;
-//     }
-//     else
-//     {
-//         ptr = start;
-//         while(ptr->next != start)
-//             ptr = ptr->next;
+    val = cqueue[cfront];
+    printf("\nDeleted: %d", val);
 
-//         ptr->next = newnode;
-//         newnode->next = start;
-//     }
-// }
+    if(cfront == crear)
+    {
+        cfront = crear = -1;
+    }
+    else if(cfront == MAX - 1)
+    {
+        cfront = 0;
+    }
+    else
+    {
+        cfront++;
+    }
+}
 
-// void insatstart()
-// {
-//     struct node *newnode,*ptr;
+void circularPeek()
+{
+    if(cfront == -1)
+    {
+        printf("\nCircular Queue is empty");
+        return;
+    }
 
-//     newnode = (struct node*)malloc(sizeof(struct node));
-//     printf("Enter value: ");
-//     scanf("%d",&newnode->data);
+    printf("\nFront element: %d", cqueue[cfront]);
+}
 
-//     if(start == NULL)
-//     {
-//         start = newnode;
-//         newnode->next = start;
-//         return;
-//     }
+void circularDisplay()
+{
+    int i;
 
-//     ptr = start;
-//     while(ptr->next != start)
-//         ptr = ptr->next;
+    if(cfront == -1)
+    {
+        printf("\nCircular Queue is empty");
+        return;
+    }
 
-//     newnode->next = start;
-//     ptr->next = newnode;
-//     start = newnode;
-// }
+    printf("\nCircular Queue: ");
 
-// void display()
-// {
-//     struct node *ptr;
+    if(cfront <= crear)
+    {
+        for(i = cfront; i <= crear; i++)
+            printf("%d ", cqueue[i]);
+    }
+    else
+    {
+        // When rear has wrapped around to the beginning.
+        for(i = cfront; i < MAX; i++)
+            printf("%d ", cqueue[i]);
 
-//     if(start == NULL)
-//     {
-//         printf("List empty");
-//         return;
-//     }
-
-//     ptr = start;
-//     do
-//     {
-//         printf("%d -> ",ptr->data);
-//         ptr = ptr->next;
-//     }while(ptr != start);
-
-//     printf("(start)");
-// }
-
-// void delatstart()
-// {
-//     struct node *ptr,*temp;
-
-//     if(start == NULL)
-//         return;
-
-//     ptr = start;
-//     while(ptr->next != start)
-//         ptr = ptr->next;
-
-//     temp = start;
-//     start = start->next;
-//     ptr->next = start;
-//     free(temp);
-// }
+        for(i = 0; i <= crear; i++)
+            printf("%d ", cqueue[i]);
+    }
+}
 
 
-// DOUBLY LINKED LIST:
-// #include<stdio.h>
-// #include<stdlib.h>
+/* =========================================================
+                  CIRCULAR LINKED LIST
+   ========================================================= */
 
-// struct node
-// {
-//     int data;
-//     struct node *prev;
-//     struct node *next;
-// };
+struct cnode
+{
+    int data;
+    struct cnode *next;
+};
 
-// struct node *start = NULL;
+struct cnode *cstart = NULL;
 
-// void create()
-// {
-//     struct node *newnode,*ptr;
+void circularCreate()
+{
+    struct cnode *newnode, *ptr;
 
-//     newnode = (struct node*)malloc(sizeof(struct node));
-//     printf("Enter value: ");
-//     scanf("%d",&newnode->data);
+    newnode = (struct cnode *)malloc(sizeof(struct cnode));
 
-//     newnode->next = NULL;
+    printf("\nEnter value: ");
+    scanf("%d", &newnode->data);
 
-//     if(start == NULL)
-//     {
-//         newnode->prev = NULL;
-//         start = newnode;
-//     }
-//     else
-//     {
-//         ptr = start;
-//         while(ptr->next != NULL)
-//             ptr = ptr->next;
+    if(cstart == NULL)
+    {
+        cstart = newnode;
+        newnode->next = cstart;
+    }
+    else
+    {
+        ptr = cstart;
 
-//         ptr->next = newnode;
-//         newnode->prev = ptr;
-//     }
-// }
+        while(ptr->next != cstart)
+            ptr = ptr->next;
 
-// void insatstart()
-// {
-//     struct node *newnode;
+        ptr->next = newnode;
+        newnode->next = cstart;
+    }
+}
 
-//     newnode = (struct node*)malloc(sizeof(struct node));
-//     printf("Enter value: ");
-//     scanf("%d", &newnode->data);
-//     newnode->prev = NULL;
+void circularInsertStart()
+{
+    struct cnode *newnode, *ptr;
 
-//     if(start == NULL)  // List is empty
-//     {
-//         newnode->next = NULL;
-//         start = newnode;
-//     }
-//     else  // List has nodes
-//     {
-//         newnode->next = start;
-//         start->prev = newnode;
-//         start = newnode;
-//     }
-// }
+    newnode = (struct cnode *)malloc(sizeof(struct cnode));
 
-// void display()
-// {
-//     struct node *ptr;
+    printf("\nEnter value: ");
+    scanf("%d", &newnode->data);
 
-//     ptr = start;
+    if(cstart == NULL)
+    {
+        cstart = newnode;
+        newnode->next = cstart;
+        return;
+    }
 
-//     while(ptr != NULL)
-//     {
-//         printf("%d -> ",ptr->data);
-//         ptr = ptr->next;
-//     }
+    ptr = cstart;
 
-//     printf("NULL");
-// }
+    while(ptr->next != cstart)
+        ptr = ptr->next;
 
-// void delatstart()
-// {
-//     struct node *temp;
+    newnode->next = cstart;
+    ptr->next = newnode;
+    cstart = newnode;
+}
 
-//     if(start == NULL)
-//         return;
+void circularDeleteStart()
+{
+    struct cnode *ptr, *temp;
 
-//     temp = start;
-//     start = start->next;
+    if(cstart == NULL)
+    {
+        printf("\nList is empty");
+        return;
+    }
 
-//     if(start != NULL)
-//         start->prev = NULL;
+    if(cstart->next == cstart)
+    {
+        free(cstart);
+        cstart = NULL;
+        return;
+    }
 
-//     free(temp);
-// }
+    ptr = cstart;
+
+    while(ptr->next != cstart)
+        ptr = ptr->next;
+
+    temp = cstart;
+    cstart = cstart->next;
+    ptr->next = cstart;
+
+    free(temp);
+}
+
+void circularListDisplay()
+{
+    struct cnode *ptr;
+
+    if(cstart == NULL)
+    {
+        printf("\nList is empty");
+        return;
+    }
+
+    ptr = cstart;
+
+    printf("\nCircular List: ");
+
+    do
+    {
+        printf("%d -> ", ptr->data);
+        ptr = ptr->next;
+    }
+    while(ptr != cstart);
+
+    printf("(START)");
+}
+
+
+/* =========================================================
+                    DOUBLY LINKED LIST
+   ========================================================= */
+
+struct dnode
+{
+    int data;
+    struct dnode *prev;
+    struct dnode *next;
+};
+
+struct dnode *dstart = NULL;
+
+void doublyCreate()
+{
+    struct dnode *newnode, *ptr;
+
+    newnode = (struct dnode *)malloc(sizeof(struct dnode));
+
+    printf("\nEnter value: ");
+    scanf("%d", &newnode->data);
+
+    newnode->next = NULL;
+
+    if(dstart == NULL)
+    {
+        newnode->prev = NULL;
+        dstart = newnode;
+    }
+    else
+    {
+        ptr = dstart;
+
+        while(ptr->next != NULL)
+            ptr = ptr->next;
+
+        ptr->next = newnode;
+        newnode->prev = ptr;
+    }
+}
+
+void doublyInsertStart()
+{
+    struct dnode *newnode;
+
+    newnode = (struct dnode *)malloc(sizeof(struct dnode));
+
+    printf("\nEnter value: ");
+    scanf("%d", &newnode->data);
+
+    newnode->prev = NULL;
+
+    if(dstart == NULL)
+    {
+        newnode->next = NULL;
+        dstart = newnode;
+    }
+    else
+    {
+        newnode->next = dstart;
+        dstart->prev = newnode;
+        dstart = newnode;
+    }
+}
+
+void doublyDeleteStart()
+{
+    struct dnode *temp;
+
+    if(dstart == NULL)
+    {
+        printf("\nList is empty");
+        return;
+    }
+
+    temp = dstart;
+    dstart = dstart->next;
+
+    if(dstart != NULL)
+        dstart->prev = NULL;
+
+    free(temp);
+}
+
+void doublyDisplay()
+{
+    struct dnode *ptr;
+
+    if(dstart == NULL)
+    {
+        printf("\nList is empty");
+        return;
+    }
+
+    ptr = dstart;
+
+    printf("\nDoubly Linked List: ");
+
+    while(ptr != NULL)
+    {
+        printf("%d <-> ", ptr->data);
+        ptr = ptr->next;
+    }
+
+    printf("NULL");
+}
+
+
+/* =========================================================
+                       MAIN MENU
+   ========================================================= */
+
+int main()
+{
+    int choice, subchoice;
+
+    clrscr();
+
+    while(1)
+    {
+        printf("\n\n================================");
+        printf("\n       DATA STRUCTURES");
+        printf("\n================================");
+
+        printf("\n1. Normal Queue");
+        printf("\n2. Circular Queue");
+        printf("\n3. Circular Linked List");
+        printf("\n4. Doubly Linked List");
+        printf("\n5. Exit");
+
+        printf("\n\nEnter your choice: ");
+        scanf("%d", &choice);
+
+
+        switch(choice)
+        {
+            /* ---------------- Normal Queue ---------------- */
+
+            case 1:
+
+                while(1)
+                {
+                    printf("\n\n--- Normal Queue ---");
+                    printf("\n1. Enqueue");
+                    printf("\n2. Dequeue");
+                    printf("\n3. Peek");
+                    printf("\n4. Display");
+                    printf("\n5. Back");
+
+                    printf("\nEnter choice: ");
+                    scanf("%d", &subchoice);
+
+                    switch(subchoice)
+                    {
+                        case 1:
+                            normalEnqueue();
+                            break;
+
+                        case 2:
+                            normalDequeue();
+                            break;
+
+                        case 3:
+                            normalPeek();
+                            break;
+
+                        case 4:
+                            normalDisplay();
+                            break;
+
+                        case 5:
+                            break;
+
+                        default:
+                            printf("\nInvalid choice");
+                    }
+
+                    if(subchoice == 5)
+                        break;
+                }
+
+                break;
+
+
+            /* ---------------- Circular Queue ---------------- */
+
+            case 2:
+
+                while(1)
+                {
+                    printf("\n\n--- Circular Queue ---");
+                    printf("\n1. Enqueue");
+                    printf("\n2. Dequeue");
+                    printf("\n3. Peek");
+                    printf("\n4. Display");
+                    printf("\n5. Back");
+
+                    printf("\nEnter choice: ");
+                    scanf("%d", &subchoice);
+
+                    switch(subchoice)
+                    {
+                        case 1:
+                            circularEnqueue();
+                            break;
+
+                        case 2:
+                            circularDequeue();
+                            break;
+
+                        case 3:
+                            circularPeek();
+                            break;
+
+                        case 4:
+                            circularDisplay();
+                            break;
+
+                        case 5:
+                            break;
+
+                        default:
+                            printf("\nInvalid choice");
+                    }
+
+                    if(subchoice == 5)
+                        break;
+                }
+
+                break;
+
+
+            /* ---------------- Circular Linked List ---------------- */
+
+            case 3:
+
+                while(1)
+                {
+                    printf("\n\n--- Circular Linked List ---");
+                    printf("\n1. Create");
+                    printf("\n2. Insert at Start");
+                    printf("\n3. Delete at Start");
+                    printf("\n4. Display");
+                    printf("\n5. Back");
+
+                    printf("\nEnter choice: ");
+                    scanf("%d", &subchoice);
+
+                    switch(subchoice)
+                    {
+                        case 1:
+                            circularCreate();
+                            break;
+
+                        case 2:
+                            circularInsertStart();
+                            break;
+
+                        case 3:
+                            circularDeleteStart();
+                            break;
+
+                        case 4:
+                            circularListDisplay();
+                            break;
+
+                        case 5:
+                            break;
+
+                        default:
+                            printf("\nInvalid choice");
+                    }
+
+                    if(subchoice == 5)
+                        break;
+                }
+
+                break;
+
+
+            /* ---------------- Doubly Linked List ---------------- */
+
+            case 4:
+
+                while(1)
+                {
+                    printf("\n\n--- Doubly Linked List ---");
+                    printf("\n1. Create");
+                    printf("\n2. Insert at Start");
+                    printf("\n3. Delete at Start");
+                    printf("\n4. Display");
+                    printf("\n5. Back");
+
+                    printf("\nEnter choice: ");
+                    scanf("%d", &subchoice);
+
+                    switch(subchoice)
+                    {
+                        case 1:
+                            doublyCreate();
+                            break;
+
+                        case 2:
+                            doublyInsertStart();
+                            break;
+
+                        case 3:
+                            doublyDeleteStart();
+                            break;
+
+                        case 4:
+                            doublyDisplay();
+                            break;
+
+                        case 5:
+                            break;
+
+                        default:
+                            printf("\nInvalid choice");
+                    }
+
+                    if(subchoice == 5)
+                        break;
+                }
+
+                break;
+
+
+            case 5:
+                getch();
+                return 0;
+
+
+            default:
+                printf("\nInvalid choice");
+        }
+    }
+}
