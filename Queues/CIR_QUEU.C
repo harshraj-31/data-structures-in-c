@@ -1,11 +1,12 @@
-#include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+
 #define MAX 5
 
 int queue[MAX];
 int front = -1;
-int rear  = -1;
+int rear = -1;
 
 void insert();
 void delete();
@@ -21,12 +22,11 @@ int main()
     return 0;
 }
 
-// MENU
 void menu()
 {
     int choice;
 
-    while(1)
+    while (1)
     {
         printf("\n1. INSERT");
         printf("\n2. DELETE");
@@ -37,90 +37,100 @@ void menu()
         printf("\nENTER THE CHOICE: ");
         scanf("%d", &choice);
 
-        switch(choice)
+        switch (choice)
         {
-            case 1: insert(); break;
-            case 2: delete(); break;
-            case 3: display(); break;
-            case 4: peek(); break;
-            case 0: exit(0);
-	    default: printf("\nINVALID CHOICE");
+            case 1:
+                insert();
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                display();
+                break;
+
+            case 4:
+                peek();
+                break;
+
+            case 0:
+                exit(0);
+
+            default:
+                printf("\nINVALID CHOICE");
         }
     }
 }
 
-// INSERT
 void insert()
 {
     int num;
 
-    printf("ENTER THE VALUE: ");
-    scanf("%d",&num);
-
-    if(rear == MAX-1)
+    if (rear == MAX - 1)
     {
         printf("\nQUEUE OVERFLOW");
+        return;
     }
-    else if(front == -1 && rear == -1)
+
+    printf("ENTER THE VALUE: ");
+    scanf("%d", &num);
+
+    if (front == -1 && rear == -1)
     {
-	front = rear = 0;
-        queue[rear] = num;
+        front = rear = 0;
     }
     else
     {
         rear++;
-        queue[rear] = num;
     }
+
+    queue[rear] = num;
 }
 
-// DELETE
 void delete()
 {
-    if(front == -1 && rear == -1)
+    if (front == -1 && rear == -1)
     {
         printf("\nQUEUE UNDERFLOW");
+        return;
     }
-    else
-    {
-	printf("\nDELETED ELEMENT: %d", queue[front]);
-        front++;
 
-        if(front > rear)
-        {
-            front = rear = -1;
-        }
+    printf("\nDELETED ELEMENT: %d", queue[front]);
+    front++;
+
+    if (front > rear)
+    {
+        front = rear = -1;
     }
 }
 
-// DISPLAY
 void display()
 {
     int i;
 
-    if(front == -1 && rear == -1)
+    if (front == -1 && rear == -1)
     {
         printf("\nQUEUE IS EMPTY");
+        return;
     }
-    else
+
+    printf("\nQUEUE ELEMENTS: ");
+
+    for (i = front; i <= rear; i++)
     {
-        printf("\nQUEUE ELEMENTS: ");
-        for(i = front; i <= rear; i++)
-        {
-            printf("%d ", queue[i]);
-        }
+        printf("%d ", queue[i]);
     }
 }
 
-// PEEK
 void peek()
 {
-    if(front == -1 && rear == -1)
+    if (front == -1 && rear == -1)
     {
         printf("\nQUEUE IS EMPTY");
+        return;
     }
-    else
-    {
-	printf("\nFRONT ELEMENT: %d", queue[front]);
-    }
-}
 
+    printf("\nFRONT ELEMENT: %d", queue[front]);
+}
