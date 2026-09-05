@@ -20,29 +20,28 @@ void display(struct queue *);
 void peek(struct queue *);
 void menu(struct queue *);
 
-// CREATE QUEUE
 void create_queue(struct queue *q)
 {
     q->front = NULL;
     q->rear = NULL;
 }
 
-// INSERT
 void insert(struct queue *q, int val)
 {
     struct node *ptr;
-    ptr = (struct node*)malloc(sizeof(struct node));
 
-    if(ptr == NULL)
+    ptr = (struct node *)malloc(sizeof(struct node));
+
+    if (ptr == NULL)
     {
-        printf("Overflow\n");
+        printf("OVERFLOW\n");
         return;
     }
 
     ptr->data = val;
     ptr->next = NULL;
 
-    if(q->front == NULL)
+    if (q->front == NULL)
     {
         q->front = ptr;
         q->rear = ptr;
@@ -56,12 +55,11 @@ void insert(struct queue *q, int val)
     printf("DATA INSERTED\n");
 }
 
-// DELETE
 void delete_node(struct queue *q)
 {
     struct node *ptr;
 
-    if(q->front == NULL)
+    if (q->front == NULL)
     {
         printf("UNDERFLOW\n");
         return;
@@ -70,19 +68,20 @@ void delete_node(struct queue *q)
     ptr = q->front;
     q->front = q->front->next;
 
-    if(q->front == NULL)
+    if (q->front == NULL)
+    {
         q->rear = NULL;
+    }
 
     printf("DELETED ELEMENT: %d\n", ptr->data);
     free(ptr);
 }
 
-// DISPLAY
 void display(struct queue *q)
 {
     struct node *temp;
 
-    if(q->front == NULL)
+    if (q->front == NULL)
     {
         printf("EMPTY\n");
         return;
@@ -91,18 +90,19 @@ void display(struct queue *q)
     temp = q->front;
 
     printf("QUEUE ELEMENTS: ");
-    while(temp != NULL)
+
+    while (temp != NULL)
     {
         printf("%d ", temp->data);
         temp = temp->next;
     }
+
     printf("\n");
 }
 
-// PEEK
 void peek(struct queue *q)
 {
-    if(q->front == NULL)
+    if (q->front == NULL)
     {
         printf("EMPTY\n");
     }
@@ -112,12 +112,11 @@ void peek(struct queue *q)
     }
 }
 
-// MENU
 void menu(struct queue *q)
 {
-    int choice,value;
+    int choice, value;
 
-    while(1)
+    while (1)
     {
         printf("\n1. INSERT\n");
         printf("2. DELETE\n");
@@ -128,7 +127,7 @@ void menu(struct queue *q)
         printf("ENTER THE CHOICE: ");
         scanf("%d", &choice);
 
-        switch(choice)
+        switch (choice)
         {
             case 1:
                 printf("ENTER THE VALUE: ");
@@ -157,7 +156,6 @@ void menu(struct queue *q)
     }
 }
 
-// MAIN
 int main()
 {
     struct queue q;
