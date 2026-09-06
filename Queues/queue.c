@@ -1,119 +1,131 @@
-#include<stdio.h>
+#include <stdio.h>
+
 #define MAX 5
+
 int no[MAX];
-int front = -1, rear = -1;
+int front = -1;
+int rear = -1;
 
 void enqueue();
 void dequeue();
 void peek();
 void display();
 
-void main()
+int main()
 {
     int choice;
 
     do
     {
-        printf("\n1.Enqueue ");
-        printf("\n2.Dequeue ");
-        printf("\n3.Peek ");
-        printf("\n4.Display ");
+        printf("\n1. Enqueue");
+        printf("\n2. Dequeue");
+        printf("\n3. Peek");
+        printf("\n4. Display");
         printf("\n0. Exit");
+
         printf("\nEnter your choice: ");
-        scanf("%d",&choice);
+        scanf("%d", &choice);
 
         switch (choice)
         {
-        case 1:
-            enqueue(); break;
-        
-        case 2:
-            dequeue(); break;
+            case 1:
+                enqueue();
+                break;
 
-        case 3:
-            peek(); break;
+            case 2:
+                dequeue();
+                break;
 
-        case 4:
-            display(); break;
+            case 3:
+                peek();
+                break;
 
+            case 4:
+                display();
+                break;
 
-        case 0:
-            return;
-            break;
+            case 0:
+                return 0;
 
-        default:
-            printf("invalid choice, try again");
+            default:
+                printf("\nInvalid choice, try again");
         }
+
     } while (choice != 0);
+
+    return 0;
 }
 
 void enqueue()
 {
     int val;
-    if(rear == MAX-1)
+
+    if (rear == MAX - 1)
     {
-        printf("Queue is FULL/Overflow");
+        printf("\nQueue is FULL / Overflow");
         return;
     }
-    //first element 
-    else if (front == -1 && rear == -1)
+
+    if (front == -1 && rear == -1)
     {
         front = rear = 0;
     }
     else
     {
-        rear = rear + 1;
+        rear++;
     }
-    printf("\np1.Input a number: ");
-    scanf("%d",&val);
+
+    printf("\nEnter a number: ");
+    scanf("%d", &val);
+
     no[rear] = val;
 }
 
 void dequeue()
 {
-    // 1. Check if the queue is empty
+    int val;
+
     if (front == -1 || front > rear)
     {
         printf("\nQueue Underflow! Nothing to delete.");
+        return;
     }
-    else
+
+    val = no[front];
+    printf("\nElement deleted: %d", val);
+
+    front++;
+
+    if (front > rear)
     {
-        int val = no[front];
-        printf("\nElement deleted: %d", val);
-        front = front + 1;
-        if (front > rear)
-        {
-            front = rear = -1;
-        }
+        front = rear = -1;
     }
 }
 
 void peek()
 {
-    if(front == -1 || front > rear)
+    if (front == -1 || front > rear)
     {
-        printf("\n Queue is Empty");
+        printf("\nQueue is Empty");
     }
     else
     {
-        printf("\n Peek: %d",no[front]);
+        printf("\nPeek: %d", no[front]);
     }
 }
 
 void display()
 {
     int i;
-    if(front == -1 || front > rear)
+
+    if (front == -1 || front > rear)
     {
-        printf("Queue is empty");
+        printf("\nQueue is empty");
         return;
     }
-    else
+
+    for (i = front; i <= rear; i++)
     {
-        for(i=front;i<=rear;i++)
-        {
-            printf("\n%d",no[i]);
-        }
-        
+        printf("\n%d", no[i]);
     }
 }
