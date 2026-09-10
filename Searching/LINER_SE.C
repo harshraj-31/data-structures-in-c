@@ -10,7 +10,7 @@ int main()
     printf("ENTER THE NUMBER OF ELEMENTS => ");
     scanf("%d", &n);
 
-    printf("ENTER THE ELEMENTS => ");
+    printf("ENTER THE ELEMENTS =>\n");
     for (i = 0; i < n; i++)
     {
         scanf("%d", &a[i]);
@@ -23,15 +23,15 @@ int main()
     {
         if (a[i] == search)
         {
-            printf("\nELEMENT FOUND AT POSITION => %d", i + 1);
+            printf("\nELEMENT FOUND AT POSITION => %d\n", i + 1);
             found = 1;
-            /* break;  // use this if you want only first position */
+            break; 
         }
     }
 
     if (found == 0)
     {
-        printf("\nELEMENT NOT FOUND");
+        printf("\nELEMENT NOT FOUND\n");
     }
 
     getch();
