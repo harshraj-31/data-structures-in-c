@@ -1,55 +1,62 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
 #define MAX 5000
 
 void createarray(int no[])
 {
     int i;
-    for(i=0;i<MAX;i++)
+    for (i = 0; i < MAX; i++)
     {
-	no[i] = i + 1;
+        no[i] = i + 1;
     }
 }
 
 void displayarray(int no[])
 {
     int i;
-    for(i=0;i<MAX;i++)
+    for (i = 0; i < MAX; i++)
     {
-        printf("\t%d", no[i]);
+        printf("%d\t", no[i]);
     }
 }
+
 void binarysearch(int no[], int val)
 {
     int beg = 0, end = MAX - 1, mid, iteration = 0;
 
-    while(beg <= end)
+    while (beg <= end)
     {
         mid = (beg + end) / 2;
-	iteration++;
-	printf("\nbeg=%d \tmid=%d \tend=%d", beg, mid, end);
-        if(no[mid] == val)
+        iteration++;
+        
+        printf("\nbeg=%d \tmid=%d \tend=%d", beg, mid, end);
+        
+        if (no[mid] == val)
         {
-            printf("\n%d FOUND \t ITERATION=%d", val, iteration);
+            printf("\n%d FOUND \t ITERATION=%d\n", val, iteration);
             return;
         }
-        else if(no[mid] > val)
+        else if (no[mid] > val)
         {
-            end = mid - 1;
+            end = mid - 1; // Search in the left half
         }
         else
         {
-            beg = mid + 1;
+            beg = mid + 1; // Search in the right half
         }
     }
 
-    printf("\n%d NOT FOUND", val);
+    printf("\n%d NOT FOUND\n", val);
 }
 
 int main()
 {
-    int no[MAX],val;
+    int no[MAX], val;
+    
     clrscr();
+    
     createarray(no);
     displayarray(no);
 
@@ -57,6 +64,7 @@ int main()
     scanf("%d", &val);
 
     binarysearch(no, val);
-	getch();
+    
+    getch();
     return 0;
 }
