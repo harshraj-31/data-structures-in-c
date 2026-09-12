@@ -1,63 +1,89 @@
-#include<stdio.h>
-#include<conio.h>
-#define MAX 50
+#include <stdio.h>
+#include <stdlib.h>
 
-int a[MAX], n;
-
-void input();
-void display();
-void selection();
-
-void input()
+struct node
 {
-   int i;
-   printf("ENTER THE NUMBER: ");
-   scanf("%d",&n);
+    int data;
+    struct node *left;
+    struct node *right;
+};
 
-   for(i=0;i<n;i++)
-   {
-      scanf("%d",&a[i]);
-   }
+// Function to create a new tree node
+struct node* createNode(int data)
+{
+    struct node* newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
 }
 
-void display()
+// Recursive function to find the Lowest Common Ancestor
+struct node* lowestCommonAncestor(struct node* root, struct node* p, struct node* q)
 {
-    int i;
-    printf("\nYOUR ARRAY IS: ");
-    for(i=0;i<n;i++)
+    struct node *left, *right;
+
+    // Base case: if we reach a NULL node, or find either p or q
+    if (root == NULL || root == p || root == q)
     {
-      printf("%d ",a[i]);
+        return root;
     }
-}
 
-void selection()
-{
-    int i,j,min,temp;
+    // Search for p and q in left and right subtrees
+    left = lowestCommonAncestor(root->left, p, q);
+    right = lowestCommonAncestor(root->right, p, q);
 
-    for(i=0;i<n-1;i++)
+    // If both left and right return a node, current root is the LCA
+    if (left != NULL && right != NULL)
     {
-      min = i;
+        return root;
+    }
 
-      for(j=i+1;j<n;j++)
-      {
-         if(a[j] < a[min])
-         {
-            min = j;
-         }
-      }
-
-      temp = a[i];
-      a[i] = a[min];
-      a[min] = temp;
+    // Otherwise, return the non-NULL node (pass it up the chain)
+    if (left != NULL)
+    {
+        return left;
+    }
+    else
+    {
+        return right;
     }
 }
 
 int main()
 {
-  clrscr();
-  input();
-  selection();
-  display();
-  getch();
-  return 0;
+    struct node *root, *p, *q, *lca;
+
+    /* 
+     * Creating a sample binary tree:
+     *         3
+     *       /   \
+     *      5     1
+     *     / \   / \
+     *    6   2 0   8
+     */
+    root = createNode(3);
+    root->left = createNode(5);
+    root->right = createNode(1);
+    root->left->left = createNode(6);
+    root->left->right = createNode(2);
+    root->right->left = createNode(0);
+    root->right->right = createNode(8);
+
+    // Let's find LCA for node 5 and node 1
+    p = root->left;  // Node 5
+    q = root->right; // Node 1
+
+    lca = lowestCommonAncestor(root, p, q);
+
+    if (lca != NULL)
+    {
+        printf("Lowest Common Ancestor of %d and %d is: %d\n", p->data, q->data, lca->data);
+    }
+    else
+    {
+        printf("Lowest Common Ancestor not found.\n");
+    }
+
+    return 0;
 }
