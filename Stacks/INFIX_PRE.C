@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <math.h>
 #include <ctype.h>
+#include <string.h>
 
 #define MAX 100
 
@@ -9,29 +10,24 @@ char prefix[MAX];
 int stack[MAX];
 int top = -1;
 
-void push();
+void push(int x);
 int pop();
 
-void main()
-{
+int main() {
     int i, op1, op2, result = 0;
 
     clrscr();
     printf("ENTER THE PREFIX EXPRESSION: ");
     gets(prefix);
+    
     for (i = strlen(prefix) - 1; i >= 0; i--)
-    {
         if (isdigit(prefix[i]))
-        {
             push(prefix[i] - '0');
-        }
-        else
-        {
+        else {
             op1 = pop();
             op2 = pop();
 
-            switch (prefix[i])
-            {
+            switch (prefix[i]) {
                 case '+': result = op1 + op2; break;
                 case '-': result = op1 - op2; break;
                 case '*': result = op1 * op2; break;
@@ -41,21 +37,17 @@ void main()
             }
             push(result);
         }
-    }
 
-    printf("RESULT = %d", pop());
+    printf("RESULT = %d\n", stack[top]);
+    
     getch();
+    return 0;
 }
 
-/* PUSH OPERATION */
-void push(int x)
-{
+void push(int x) {
     stack[++top] = x;
 }
 
-
-/* POP OPERATION */
-int pop()
-{
+int pop() {
     return stack[top--];
 }
