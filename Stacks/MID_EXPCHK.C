@@ -1,75 +1,59 @@
 #include <stdio.h>
-#define MAX 10
+#include <conio.h>
+
+#define MAX 50
+
 int top = -1;
-int stack[MAX];
+char stack[MAX];
 char exp[100];
 
-void push(char ch)
-{
-	if (top == MAX - 1)
-	{
-		printf("\nStack OverFlow");
-	}
-	else
-	{
-		stack[++top] = ch;
-	}
+void push(char ch) {
+    if (top == MAX - 1)
+        printf("\nStack OverFlow");
+    else
+        stack[++top] = ch;
 }
 
-
-char pop()
-{
-	if (top == -1)
-	{
-		printf("\nStack underflow");
-		return '9';
-	}
-	else
-	{
-		return stack[top--];
-	}
+char pop() {
+    if (top == -1) {
+        printf("\nStack underflow");
+        return '9';
+    }
+    return stack[top--];
 }
 
+int main() {
+    int i, flag = 1;
+    char ch;
+    
+    clrscr();
+    
+    printf("Enter Expression: ");
+    flushall();
+    gets(exp);
 
-int main()
-{
-	int i, ch, flag = 1;
-	clrscr();
-	printf("Enter Expression: ");
-	flushall();
-	gets(exp);
+    for (i = 0; exp[i] != '\0'; i++) {
+        if (exp[i] == '(' || exp[i] == '{' || exp[i] == '[')
+            push(exp[i]);
+        else if (exp[i] == ')' || exp[i] == '}' || exp[i] == ']') {
+            ch = pop(); 
+            
+            if (ch == '9')
+                flag = 0;
+            else if (ch == '(' && exp[i] != ')')
+                flag = 0;
+            else if (ch == '[' && exp[i] != ']')
+                flag = 0;
+            else if (ch == '{' && exp[i] != '}')
+                flag = 0;
+        }
+    }
+    
+    if (flag == 1 && top == -1)
+        printf("\n%s is valid Expression", exp);
+    else
+        printf("\n%s is not a valid expression", exp);
 
-	for (i = 0; exp[i] != '\0'; i++)
-	{
-		if (exp[i] == '(' || exp[i] == '{' || exp[i] == '[')
-		{
-			push(exp[i]);
-		}
-		else if (exp[i] == ')' || exp[i] == '}' || exp[i] == ']')
-		{
-			ch = pop(); // ch stores popped < '(' , '[', '{' > expression from stack
-			
-			// if its invalid expression then flag =0
-			if (ch == '9')
-				flag = 0;
-			else if (ch == '(' && exp[i] != ')') 
-				flag = 0;
-
-			else if (ch == '[' && exp[i] != ']')
-				flag = 0;
-
-			else if (ch == '{' && exp[i] != '}')
-				flag = 0;
-		}
-	}
-	//At the end if flaf == 1 AND stack is empty then then valied expression
-	if (flag == 1 && top == -1)
-	{
-		printf("\n%s is valid Expression", exp);
-	}
-	else
-	{
-		printf("\n%s is not a valid expression", exp);
-	}
-	getch();
+    getch();
+    return 0;
 }
