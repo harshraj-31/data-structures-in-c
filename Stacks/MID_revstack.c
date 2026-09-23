@@ -6,45 +6,44 @@
 int stack[MAX];
 int top = -1;
 
-// Push function
 void push(int val) {
-    if (top == MAX - 1) {
+    if (top == MAX - 1)
         printf("Stack Overflow\n");
-    } else {
+    else
         stack[++top] = val;
-    }
 }
 
-// Pop function
 int pop() {
-    if (top == -1) {
-        return -1;  // Empty stack
-    } else {
-        return stack[top--];
-    }
+    if (top == -1)
+        return -1; 
+    
+    return stack[top--];
 }
 
-void main() {
-    int num, digit, rev = 0;
+int main() {
+    int num, digit, rev = 0, multiplier = 1;
+    
     clrscr();
 
     printf("Enter a number: ");
     scanf("%d", &num);
 
-    // Push digits into stack
+    // Push digits into stack (extracts right-to-left)
     while (num > 0) {
         digit = num % 10;
         push(digit);
         num = num / 10;
     }
 
-    // Pop digits to form reversed number
+    // Pop digits and reconstruct in reversed order
     while (top != -1) {
         digit = pop();
-        rev = rev * 10 + digit;
+        rev = rev + (digit * multiplier);
+        multiplier *= 10;
     }
 
     printf("Reversed number: %d\n", rev);
 
     getch();
+    return 0;
 }
