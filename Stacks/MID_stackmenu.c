@@ -1,82 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 
-#define MAX 100 // Maximum size of stack
+#define MAX 100 
 
-// Global stack array and top pointer
 int stack[MAX];
-int top = -1; // Initialize top to -1 (empty stack)
+int top = -1; 
 
-// Function to push an element onto the stack
-void push(int value)
-{
-    if (top == MAX - 1) // Check if stack is full
-    {
+void push(int value) {
+    if (top == MAX - 1)
         printf("Stack Overflow! Cannot push %d\n", value);
-    }
-    else
-    {
-        stack[++top] = value; // Increment top and insert value
+    else {
+        stack[++top] = value;
         printf("%d pushed onto stack\n", value);
     }
 }
 
-// Function to pop an element from the stack
-void pop()
-{
-    if (top == -1) // Check if stack is empty
-    {
+void pop() {
+    if (top == -1)
         printf("Stack Underflow! No elements to pop\n");
-    }
     else
-    {
-        printf("%d popped from stack\n", stack[top--]); // Print and decrement top
-    }
+        printf("%d popped from stack\n", stack[top--]);
 }
 
-// Function to peep (view top element without removing it)
-void peep()
-{
-    if (top == -1) // Check if stack is empty
-    {
+void peep() {
+    if (top == -1)
         printf("\nStack is empty\n");
-    }
     else
-    {
         printf("\nTop element is %d\n", stack[top]);
-    }
 }
 
-// Function to count total elements in stack
-void count()
-{
+void count() {
     printf("Total elements in stack: %d\n", top + 1);
 }
 
-// Function to display all stack elements from top to bottom
-void display()
-{
-    if (top == -1) // Check if stack is empty
-    {
+void display() {
+    int i;
+    if (top == -1)
         printf("Stack is empty\n");
-    }
-    else
-    {
+    else {
         printf("Stack elements are:\n");
-        for (int i = top; i >= 0; i--) // Traverse from top to bottom
-        {
+        for (i = top; i >= 0; i--)
             printf("%d\n", stack[i]);
-        }
     }
 }
 
-// Main menu-driven stack program
-int main()
-{
+int main() {
     int choice, value;
+    
+    clrscr();
 
-    while (1) // Infinite loop for menu
-    {
+    while (1) {
         printf("\n--- Stack Menu ---\n");
         printf("1. Push\n");
         printf("2. Pop\n");
@@ -87,31 +61,21 @@ int main()
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        // Switch statement to handle menu choices
-        switch (choice)
-        {
-        case 1:
-            printf("Enter value to push: ");
-            scanf("%d", &value);
-            push(value);
-            break;
-        case 2:
-            pop();
-            break;
-        case 3:
-            peep();
-            break;
-        case 4:
-            count();
-            break;
-        case 5:
-            display();
-            break;
-        case 6:
-            printf("Exiting program...\n");
-            exit(0);
-        default:
-            printf("Invalid choice! Please try again.\n");
+        switch (choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2: pop(); break;
+            case 3: peep(); break;
+            case 4: count(); break;
+            case 5: display(); break;
+            case 6: 
+                printf("Exiting program...\n");
+                return 0;
+            default:
+                printf("Invalid choice! Please try again.\n");
         }
     }
 
