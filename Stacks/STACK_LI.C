@@ -2,13 +2,12 @@
 #include <conio.h>
 #include <stdlib.h>
 
-struct node
-{
+struct node {
     int data;
     struct node *next;
 };
-struct node *top = NULL;
 
+struct node *top = NULL;
 
 void push();
 void pop();
@@ -16,47 +15,29 @@ void display();
 void peep();
 void menu();
 
-int main()
-{
+int main() {
     int ch;
-
     clrscr();
-    do
-    {
+    
+    do {
         menu();
         scanf("%d", &ch);
 
-        switch (ch)
-        {
-            case 1:
-                push();
-                break;
-
-            case 2:
-                display();
-                break;
-
-            case 3:
-                pop();
-                break;
-
-	    case 4:
-		peep();
-                break;
-
-            case 0:
-                exit(0);
-
-            default:
-                printf("\n Invalid Choice");
+        switch (ch) {
+            case 1: push(); break;
+            case 2: display(); break;
+            case 3: pop(); break;
+            case 4: peep(); break;
+            case 0: return 0;
+            default: printf("\n Invalid Choice\n");
         }
     } while (ch != 0);
 
     getch();
     return 0;
 }
-void menu()
-{
+
+void menu() {
     printf("\n\n----- STACK MENU -----");
     printf("\n1. Push");
     printf("\n2. Display");
@@ -66,17 +47,13 @@ void menu()
     printf("\nEnter your choice: ");
 }
 
-void push()
-{
+void push() {
     struct node *newnode;
     newnode = (struct node *)malloc(sizeof(struct node));
 
     if (newnode == NULL)
-    {
         printf("\n Stack Overflow");
-    }
-    else
-    {
+    else {
         printf("\n Enter value: ");
         scanf("%d", &newnode->data);
 
@@ -87,51 +64,39 @@ void push()
     }
 }
 
-void pop()
-{
+void pop() {
     struct node *temp;
-	a
+    
     if (top == NULL)
-    {
         printf("\n Stack Underflow");
-    }
-    else
-    {
+    else {
         temp = top;
         printf("\n %d is popped", top->data);
         top = top->next;
         free(temp);
     }
 }
-void display()
-{
+
+void display() {
     struct node *temp;
 
     if (top == NULL)
-    {
         printf("\n Stack is empty");
-    }
-    else
-    {
+    else {
         temp = top;
         printf("\n Stack elements are:\n");
 
-        while (temp != NULL)
-        {
+        while (temp != NULL) {
             printf("%d -> ", temp->data);
             temp = temp->next;
         }
-        printf("NULL");
+        printf("NULL\n");
     }
 }
-void peep()
-{
-	if(top==NULL)
-   {
-    printf("\nSTACK IS EMPTY");
-   }
-   else
-   {
-   printf("\n TOP VALUE IS %d",top->data);
-   }
+
+void peep() {
+    if (top == NULL)
+        printf("\n STACK IS EMPTY");
+    else
+        printf("\n TOP VALUE IS %d", top->data);
 }
