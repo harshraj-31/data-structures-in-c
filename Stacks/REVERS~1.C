@@ -1,46 +1,40 @@
 #include <stdio.h>
+#include <conio.h>
+
 #define MAX 5
+
 int stack[MAX];
 int top = -1;
-void push(int value)
-{
-    if(top == MAX - 1)
-    {
-	printf("Stack Overflow\n");
-    }
+
+void push(int value) {
+    if (top == MAX - 1)
+        printf("Stack Overflow\n");
     else
-    {
-	top++;
-	stack[top] = value;
-    }
+        stack[++top] = value; // Combined increment and assignment to drop brackets
 }
-void pop()
-{
-    if(top == -1)
-    {
-	printf("Stack Underflow\n");
-    }
+
+void pop() {
+    if (top == -1)
+        printf("Stack Underflow\n");
     else
-    {
-	printf("%d ", stack[top]);
-	top--;
-    }
+        printf("%d ", stack[top--]); // Combined print and decrement to drop brackets
 }
-int main()
-{
+
+int main() {
     int i, value;
+    
     clrscr();
+    
     printf("Enter %d stack values:\n", MAX);
-    for(i = 0; i < MAX; i++)
-    {
-	scanf("%d", &value);
-	push(value);
+    for (i = 0; i < MAX; i++) {
+        scanf("%d", &value);
+        push(value);
     }
+    
     printf("\nReverse Stack Values are:\n");
-    for(i = 0; i < MAX; i++)
-    {
-	pop();
-    }
-	getch();
+    for (i = 0; i < MAX; i++)
+        pop();
+
+    getch();
     return 0;
 }
